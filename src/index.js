@@ -19,7 +19,7 @@ bot.on('ready', async () => { //runs when event "ready" is on (so when the bot t
 
     console.log(`Bot has started, with ${bot.users.cache.size} users, in ${bot.channels.cache.size} channels of ${bot.guilds.cache.size} guilds.`);
 
-    bot.user.setActivity(`Hi im a template bot! You can change my status here!`); //sets status
+    bot.user.setActivity(`Sup im a bot especially made for server boosters!`); //sets status
 
 });
 
@@ -27,8 +27,6 @@ bot.on('ready', async () => { //runs when event "ready" is on (so when the bot t
 bot.on('message', message => { //runs when event "message" is sent (so when the bot sees msgs)
     if (!message.channel.type == "dm") return; //checks if channel is a dm
     if (message.author.bot) return; //checks if author is a bot
-
-
 
     if (!message.content.toLowerCase().startsWith(prefix)) return; //makes sure the bot only responds to cmds with its prefix
     if (!message.member.roles.cache.has("585534099352190979") && !message.member.roles.cache.has("696389070791770221")) return message.channel.send("Sorry but my commands are for Server boosters only!")
@@ -44,7 +42,22 @@ bot.on('message', message => { //runs when event "message" is sent (so when the 
         console.error(error);
     }
 
-})
+});
 
-bot.login(token).catch(console.error) //logs in
+bot.on('message', message => { //runs when event "message" is sent (so when the bot sees msgs)
+
+    if (message.content.toLowerCase() === "<@!673267146251567144>") {
+        message.channel.send("My commands are only for Server boosters! \n **list of cmds** \n`-` u!comment - alias: u!cm \n`-` u!ping \n`-` u!kek")
+    console.log("a")
+    }
+    if (message.content.toLowerCase() === `${config.prefix}help`) {
+        message.channel.send("My commands are only for Server boosters! \n **list of cmds** \n`-` u!comment - alias: u!cm \n`-` u!ping \n`-` u!kek")
+        console.log("aa")
+    }
+
+
+});
+
+
+    bot.login(token).catch(console.error) //logs in
 
