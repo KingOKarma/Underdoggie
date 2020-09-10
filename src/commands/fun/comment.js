@@ -1,9 +1,13 @@
 const Canvas = require('canvas');
-const Discord = require('discord.js')
+const Discord = require('discord.js');
+const words = require('../../blacklist/words/blacklist.json');
 module.exports = {
     name: 'comment',
     aliases: ["cm"],
     run: async (_, message, args) => {
+
+        const blocked = words.words.filter(word => message.content.toLowerCase().includes(word));
+
 
         let number = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
             18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34,
@@ -107,8 +111,13 @@ module.exports = {
         ctx.font = '15px sans-serif'
         ctx.rotate(0)
         ctx.fillStyle = '#000000';
-        ctx.fillText(args.join(' '), canvas.width/6.5, canvas.height/2.4 );
+        if (blocked.length > 0) {
+            ctx.fillText("I said a naughty word, I'm very sorry ):", canvas.width / 6.5, canvas.height / 2.4);
+            console.log(`${message.author.tag} tried to use profanity.`);
 
+        }else{
+            ctx.fillText(args.join(' '), canvas.width / 6.5, canvas.height / 2.4);
+        }
         // ctx.font = 'bold 12px sans-serif'
         // ctx.rotate(0)
         // ctx.fillStyle = '#A0A0A0';
