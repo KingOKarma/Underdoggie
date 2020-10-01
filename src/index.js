@@ -60,14 +60,14 @@ bot.on('message', message => { //runs when event "message" is sent (so when the 
 
 
 bot.on('message', message => {
-    const EmoteServer = message.client.guilds.cache.get("312682031245033482")
+    const EmoteServer = message.client.guilds.cache.get("738771970665218181")
     const EmoteChannel = EmoteServer.channels.cache.get("750836931281289217");
     const Upvote = EmoteServer.emojis.cache.get("761019251674710036");
     const Downvote = EmoteServer.emojis.cache.get("761019238114525194")
 
 
 
-    if (message.channel.id != "750836931281289217") return;
+    if (message.channel.id != "738771971151757395") return;
     message.react(Upvote)
         .catch((err) => {
             console.log(err)
