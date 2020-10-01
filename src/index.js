@@ -64,6 +64,7 @@ bot.on('message', message => {
     const EmoteChannel = EmoteServer.channels.cache.get("750836931281289217");
     const Upvote = EmoteServer.emojis.cache.get("761019251674710036");
     const Downvote = EmoteServer.emojis.cache.get("761019238114525194")
+    //a
 
 
 
