@@ -48,7 +48,7 @@ bot.on('message', message => { //runs when event "message" is sent (so when the 
 
     if (message.content.toLowerCase() === "<@!673267146251567144>") {
         message.channel.send("My commands are only for Server boosters! \n **list of cmds** \n`-` u!comment - alias: u!cm \n`-` u!ping \n`-` u!kek")
-    console.log("a")
+        console.log("a")
     }
     if (message.content.toLowerCase() === `${config.prefix}help`) {
         message.channel.send("My commands are only for Server boosters! \n **list of cmds** \n`-` u!comment - alias: u!cm \n`-` u!ping \n`-` u!kek")
@@ -59,5 +59,22 @@ bot.on('message', message => { //runs when event "message" is sent (so when the 
 });
 
 
-    bot.login(token).catch(console.error) //logs in
+bot.on('message', message => {
+    const EmoteServer = message.client.guilds.cache.get("312682031245033482")
+    const EmoteChannel = EmoteServer.channels.cache.get("750836931281289217");
+    const Upvote = EmoteServer.emojis.cache.get("761019251674710036");
+    const Downvote = EmoteServer.emojis.cache.get("761019238114525194")
+
+
+
+    if (message.channel.id != "750836931281289217") return;
+    message.react(Upvote)
+        .catch((err) => {
+            console.log(err)
+        })
+    message.react(Downvote)
+
+})
+
+bot.login(token).catch(console.error) //logs in
 
