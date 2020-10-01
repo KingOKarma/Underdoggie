@@ -67,7 +67,7 @@ bot.on('message', message => {
 
 
 
-    if (message.channel.id != "738771971151757395") return;
+    if (message.channel.id != "750836931281289217") return;
     message.react(Upvote)
         .catch((err) => {
             console.log(err)
