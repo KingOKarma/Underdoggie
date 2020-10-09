@@ -1,11 +1,27 @@
 const Discord = require('discord.js'); //gets hte discord.js library
 const bot = new Discord.Client(); //creats a const for the discord client
 const config = require('./config.json'); //allows this file to reach your config file
+const mongoose = require("mongoose");
 
 
 
 let token = config.token //creates a var for your token
 const prefix = config.prefix //creates a var for the prefix
+
+
+
+
+
+let MongoToggle = config.MongoURL
+mongoose.connect(MongoToggle, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log("Connected to DB")
+    })
+    .catch(err => {
+        console.error("mongoose error" + err);
+    })
+
+
 
 bot.on('ready', async () => { //runs when event "ready" is on (so when the bot turns on)
 
@@ -19,7 +35,7 @@ bot.on('ready', async () => { //runs when event "ready" is on (so when the bot t
 
     console.log(`Bot has started, with ${bot.users.cache.size} users, in ${bot.channels.cache.size} channels of ${bot.guilds.cache.size} guilds.`);
 
-    bot.user.setActivity(`Sup im a bot especially made for server boosters!`); //sets status
+    bot.user.setActivity(`I'm your friendly neighbourhood booster bot!`); //sets status
 
 });
 
@@ -27,9 +43,11 @@ bot.on('ready', async () => { //runs when event "ready" is on (so when the bot t
 bot.on('message', message => { //runs when event "message" is sent (so when the bot sees msgs)
     if (!message.channel.type == "dm") return; //checks if channel is a dm
     if (message.author.bot) return; //checks if author is a bot
+    let StaffID = config.StaffID
+    let BoosterID = config.BoosterID
 
     if (!message.content.toLowerCase().startsWith(prefix)) return; //makes sure the bot only responds to cmds with its prefix
-    if (!message.member.roles.cache.has("585534099352190979") && !message.member.roles.cache.has("696389070791770221")) return message.channel.send("Sorry but my commands are for Server boosters only!")
+    if (!message.member.roles.cache.has(BoosterID) && !message.member.roles.cache.has(StaffID)) return message.channel.send("Sorry but my commands are for Server boosters only!")
 
     const args = message.content.toLowerCase().slice(prefix.length).trim().split(/ +/g); //creats the args var
     const commandname = args.shift().toLowerCase(); //cmd name
