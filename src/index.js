@@ -43,11 +43,9 @@ bot.on('ready', async () => { //runs when event "ready" is on (so when the bot t
 bot.on('message', message => { //runs when event "message" is sent (so when the bot sees msgs)
     if (!message.channel.type == "dm") return; //checks if channel is a dm
     if (message.author.bot) return; //checks if author is a bot
-    let StaffID = config.StaffID
-    let BoosterID = config.BoosterID
+
 
     if (!message.content.toLowerCase().startsWith(prefix)) return; //makes sure the bot only responds to cmds with its prefix
-    if (!message.member.roles.cache.has(BoosterID) && !message.member.roles.cache.has(StaffID)) return message.channel.send("Sorry but my commands are for Server boosters only!")
 
     const args = message.content.toLowerCase().slice(prefix.length).trim().split(/ +/g); //creats the args var
     const commandname = args.shift().toLowerCase(); //cmd name
@@ -69,7 +67,7 @@ bot.on('message', message => { //runs when event "message" is sent (so when the 
         console.log("a")
     }
     if (message.content.toLowerCase() === `${config.prefix}help`) {
-        message.channel.send("My commands are only for Server boosters! \n **list of cmds** \n`-` u!comment - alias: u!cm \n`-` u!ping \n`-` u!kek")
+        message.channel.send("My commands are only for Server boosters! \n **list of cmds** \n`-` u!comment - alias: u!cm \n`-` u!ping \n`-` u!kek\n`-` u!wyr \n`-` u!addwyr ")
         console.log("aa")
     }
 

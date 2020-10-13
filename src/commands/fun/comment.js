@@ -6,6 +6,10 @@ module.exports = {
     aliases: ["cm"],
     run: async (_, message, args) => {
 
+        const config = new require('../../config.json')
+
+        if (!message.member.roles.cache.has(config.BoosterID) && !message.member.roles.cache.has(config.StaffID)) return message.channel.send("Sorry but my commands are for Server boosters only!")
+
         const blocked = words.words.filter(word => message.content.toLowerCase().includes(word));
 
 
